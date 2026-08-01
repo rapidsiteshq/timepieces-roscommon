@@ -461,6 +461,20 @@ nav .submenu a:hover {
   text-align: left;
 }
 
+.occasion-icon {
+  font-size: 1.75rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  letter-spacing: 2px;
+}
+
+.reason-item-icon {
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
 .reason-item {
   padding: 2rem;
   background-color: var(--secondary);
