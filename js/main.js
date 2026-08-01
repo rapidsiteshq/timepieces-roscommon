@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initContactForm();
   loadFonts();
   updateCartCount();
+  initVoucherPrice();
 });
 
 function loadFonts() {
@@ -294,6 +295,41 @@ function debounce(func, delay) {
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(this, args), delay);
   };
+}
+
+function initVoucherPrice() {
+  const amountSelect = document.getElementById('voucher-amount');
+  const priceDisplay = document.getElementById('voucher-price');
+  const addBtn = document.getElementById('add-voucher-btn');
+
+  if (!amountSelect || !priceDisplay || !addBtn) return;
+
+  amountSelect.addEventListener('change', function() {
+    priceDisplay.textContent = this.value;
+  });
+
+  addBtn.addEventListener('click', function() {
+    const amount = amountSelect.value;
+    const cart = JSON.parse(localStorage.getItem('timepieces-cart') || '[]');
+    const voucherId = `voucher-${amount}`;
+
+    const existingItem = cart.find(item => item.handle === voucherId);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({
+        handle: voucherId,
+        title: `Time Pieces Gift Voucher - €${amount}`,
+        price: amount,
+        quantity: 1,
+        image: 'https://cdn.shopify.com/s/files/1/0294/6965/2524/products/GiftVoucher_250x250.jpg'
+      });
+    }
+
+    localStorage.setItem('timepieces-cart', JSON.stringify(cart));
+    updateCartCount();
+    window.location.href = '/cart.html';
+  });
 }
 
 function updateCartCount() {
