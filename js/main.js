@@ -306,7 +306,6 @@ function updateCartCount() {
     if (cartLink) {
       cartCounter = document.createElement('span');
       cartCounter.className = 'cart-counter';
-      cartCounter.style.cssText = 'position: absolute; top: -8px; right: -8px; background-color: var(--accent); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600;';
       cartLink.style.position = 'relative';
       cartLink.appendChild(cartCounter);
     }
@@ -315,7 +314,7 @@ function updateCartCount() {
   if (cartCounter) {
     if (count > 0) {
       cartCounter.textContent = count;
-      cartCounter.style.display = 'block';
+      cartCounter.style.display = 'flex';
     } else {
       cartCounter.style.display = 'none';
     }
