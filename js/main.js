@@ -323,7 +323,15 @@ function initVoucherPrice() {
 
     localStorage.setItem('timepieces-cart', JSON.stringify(cart));
     updateCartCount();
-    window.location.href = '/cart.html';
+
+    const originalText = addBtn.textContent;
+    addBtn.textContent = 'Added to cart!';
+    addBtn.style.backgroundColor = '#5B9B6A';
+
+    setTimeout(() => {
+      addBtn.textContent = originalText;
+      addBtn.style.backgroundColor = '';
+    }, 2000);
   });
 }
 
