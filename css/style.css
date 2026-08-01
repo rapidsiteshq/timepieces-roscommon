@@ -325,6 +325,8 @@ nav .submenu a:hover {
 .trust-item-icon {
   font-size: 2rem;
   margin-bottom: 0.5rem;
+  color: var(--accent);
+  opacity: 0.9;
 }
 
 .trust-item h4 {
