@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
-  <title>Home Treasures | Time Pieces Roscommon</title>
-  <meta name="description" content="Shop home treasures at Time Pieces. 7 unique pieces from fine jewellery to art.">
+  <title>Product | Time Pieces Roscommon</title>
+  <meta name="description" content="View product details and add to cart.">
 </head>
 <body>
   <header>
@@ -59,84 +59,84 @@
   <main>
   <section class="section">
     <div class="container">
-      <h1>Home Treasures</h1>
-      <p style="text-align: center; margin-bottom: 2rem;">Discover our collection of home treasures.</p>
+      <div id="product-detail" style="display: none;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; max-width: 1000px; margin: 0 auto;">
+          <div>
+            <img id="product-image" src="" alt="" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+          </div>
+          <div>
+            <h1 id="product-title" style="margin-bottom: 0.5rem;"></h1>
+            <div id="product-price" style="font-size: 1.875rem; color: var(--accent); font-weight: 600; margin-bottom: 1.5rem;"></div>
+            <div id="product-description" style="color: var(--text-light); line-height: 1.8; margin-bottom: 2rem;"></div>
 
-      <div class="product-grid">
-        
-    <a href="/product.html?handle=tree-of-life-leather-journal" class="product-card">
-      <img src="https://cdn.shopify.com/s/files/1/0555/8884/7814/products/C10E58D7-95B7-4891-A7AF-8A593C466AFE.png?v=1663079691" alt="Tree of Life Leather journal" class="product-image">
-      <div class="product-info">
-        <div class="product-name">Tree of Life Leather journal</div>
-        <div class="product-price">€35.00</div>
-        <div class="product-desc">Beautifully handmade leather embossed journal with tree of life.</div>
-        <div class="product-cta">View Details →</div>
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+              <button id="add-to-cart-btn" class="btn btn-primary" style="flex: 1;">Add to Cart</button>
+              <a href="/cart.html" class="btn btn-secondary" style="flex: 1; text-align: center;">View Cart</a>
+            </div>
+
+            <a href="javascript:history.back()" class="btn btn-outline">← Back to Shop</a>
+          </div>
+        </div>
       </div>
-    </a>
-  
-    <a href="/product.html?handle=bog-buddies" class="product-card">
-      <img src="https://cdn.shopify.com/s/files/1/0555/8884/7814/products/22FD4713-8A0C-4C54-83B6-964F60853B55.jpg?v=1663700451" alt="Bog Buddies" class="product-image">
-      <div class="product-info">
-        <div class="product-name">Bog Buddies</div>
-        <div class="product-price">€50.00</div>
-        <div class="product-desc">Bride and Groom gift made in Ireland with real Irish turf.</div>
-        <div class="product-cta">View Details →</div>
-      </div>
-    </a>
-  
-    <a href="/product.html?handle=big-buddies" class="product-card">
-      <img src="https://cdn.shopify.com/s/files/1/0555/8884/7814/products/4A0901D4-783E-44EE-BF5E-2E2F99BFFF2B.png?v=1663699684" alt="Bog Buddies" class="product-image">
-      <div class="product-info">
-        <div class="product-name">Bog Buddies</div>
-        <div class="product-price">€39.99</div>
-        <div class="product-desc">Couple with Heart for engagements and anniversaries.</div>
-        <div class="product-cta">View Details →</div>
-      </div>
-    </a>
-  
-    <a href="/product.html?handle=foxford-baby-blanket" class="product-card">
-      <img src="https://cdn.shopify.com/s/files/1/0555/8884/7814/products/AE89D717-EE07-4CD5-B8B7-3C90E33F9731.jpg?v=1642206356" alt="Foxford baby blanket" class="product-image">
-      <div class="product-info">
-        <div class="product-name">Foxford baby blanket</div>
-        <div class="product-price">€56.00</div>
-        <div class="product-desc">Beautiful blue and cream check wool foxford baby blanket, Irish made.</div>
-        <div class="product-cta">View Details →</div>
-      </div>
-    </a>
-  
-    <a href="/product.html?handle=money-clip" class="product-card">
-      <img src="https://cdn.shopify.com/s/files/1/0555/8884/7814/products/00D2C9B6-2745-4B47-9CF9-8B96B907AE84.jpg?v=1650720141" alt="Money clip" class="product-image">
-      <div class="product-info">
-        <div class="product-name">Money clip</div>
-        <div class="product-price">€20.95</div>
-        <div class="product-desc">Magnetic Mullingar Pewter money clip.</div>
-        <div class="product-cta">View Details →</div>
-      </div>
-    </a>
-  
-    <a href="/product.html?handle=leather-coin-purse" class="product-card">
-      <img src="https://cdn.shopify.com/s/files/1/0555/8884/7814/products/23861156-EC83-45C5-BAB9-6AE4938E3AD3.jpg?v=1633536082" alt="Leather coin purse" class="product-image">
-      <div class="product-info">
-        <div class="product-name">Leather coin purse</div>
-        <div class="product-price">€10.00</div>
-        <div class="product-desc">Very dinky little leather coin purse with brass twist clasp.</div>
-        <div class="product-cta">View Details →</div>
-      </div>
-    </a>
-  
-    <a href="/product.html?handle=cuckoo-clock" class="product-card">
-      <img src="https://cdn.shopify.com/s/files/1/0555/8884/7814/products/clock3.jpg?v=1619457756" alt="Cuckoo Clock" class="product-image">
-      <div class="product-info">
-        <div class="product-name">Cuckoo Clock</div>
-        <div class="product-price">€2400.00</div>
-        <div class="product-desc">Absolute gem of a cuckoo clock with mechanical clock works.</div>
-        <div class="product-cta">View Details →</div>
-      </div>
-    </a>
-  
+
+      <div id="product-not-found" style="text-align: center; padding: 4rem 2rem;">
+        <h2>Product Not Found</h2>
+        <p>Sorry, we couldn't find the product you're looking for.</p>
+        <a href="/shop.html" class="btn btn-primary">Return to Shop</a>
       </div>
     </div>
   </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const params = new URLSearchParams(window.location.search);
+      const handle = params.get('handle');
+
+      if (!handle) {
+        document.getElementById('product-not-found').style.display = 'block';
+        return;
+      }
+
+      fetch('/data/products.json')
+        .then(r => r.json())
+        .then(products => {
+          const product = products.find(p => p.handle === handle);
+          if (!product) {
+            document.getElementById('product-not-found').style.display = 'block';
+            return;
+          }
+
+          document.getElementById('product-title').textContent = product.title;
+          document.getElementById('product-price').textContent = '€' + parseFloat(product.price).toFixed(2);
+          document.getElementById('product-description').textContent = product.desc || 'No description available.';
+          document.getElementById('product-image').src = product.image;
+          document.getElementById('product-image').alt = product.title;
+          document.getElementById('product-detail').style.display = 'block';
+
+          document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+            addToCart(product);
+            this.textContent = 'Added to Cart!';
+            this.disabled = true;
+            setTimeout(() => {
+              this.textContent = 'Add to Cart';
+              this.disabled = false;
+            }, 2000);
+          });
+        });
+    });
+
+    function addToCart(product) {
+      const cart = JSON.parse(localStorage.getItem('timepieces-cart') || '[]');
+      const existing = cart.find(p => p.handle === product.handle);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({...product, quantity: 1});
+      }
+      localStorage.setItem('timepieces-cart', JSON.stringify(cart));
+      updateCartCount();
+    }
+  </script>
 </main>
   <footer>
     <div class="footer-content">

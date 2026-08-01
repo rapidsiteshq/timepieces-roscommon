@@ -1062,6 +1062,62 @@ footer {
   right: 20px;
 }
 
+/* Cart Counter Badge */
+.cart-counter {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--accent);
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Product Detail Page */
+#product-detail {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  #product-detail {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Responsive table on mobile */
+@media (max-width: 768px) {
+  table {
+    font-size: 0.875rem !important;
+  }
+
+  table th,
+  table td {
+    padding: 0.5rem !important;
+  }
+
+  table input {
+    width: 50px !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

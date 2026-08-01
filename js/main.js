@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initGallery();
   initContactForm();
   loadFonts();
+  updateCartCount();
 });
 
 function loadFonts() {
@@ -293,4 +294,30 @@ function debounce(func, delay) {
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(this, args), delay);
   };
+}
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('timepieces-cart') || '[]');
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  let cartCounter = document.querySelector('.cart-counter');
+  if (!cartCounter && count > 0) {
+    const cartLink = document.querySelector('a[href="/cart.html"]');
+    if (cartLink) {
+      cartCounter = document.createElement('span');
+      cartCounter.className = 'cart-counter';
+      cartCounter.style.cssText = 'position: absolute; top: -8px; right: -8px; background-color: var(--accent); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600;';
+      cartLink.style.position = 'relative';
+      cartLink.appendChild(cartCounter);
+    }
+  }
+
+  if (cartCounter) {
+    if (count > 0) {
+      cartCounter.textContent = count;
+      cartCounter.style.display = 'block';
+    } else {
+      cartCounter.style.display = 'none';
+    }
+  }
 }

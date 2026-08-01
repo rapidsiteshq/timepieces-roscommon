@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Shopping Cart | Time Pieces Roscommon</title>
+  <meta name="description" content="View and manage your shopping cart.">
+</head>
+<body>
+  <header>
+    <div class="header-top">
+      <a href="tel:+353 89 978 7608">+353 89 978 7608</a>
+      <a href="mailto:info@rapidsites.eu">info@rapidsites.eu</a>
+    </div>
+    <div class="header-main">
+      <a href="/" class="logo"><img src="/assets/img/logo.png" alt="Time Pieces" class="logo"></a>
+      <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a>
+            <ul class="submenu">
+              <li><a href="/about.html">About Us</a></li>
+            </ul>
+          </li>
+          <li><a href="/shop.html">Shop</a>
+            <ul class="submenu">
+              <li><a href="/shop-rings.html">Rings</a></li>
+              <li><a href="/shop-necklaces.html">Necklaces</a></li>
+              <li><a href="/shop-earrings.html">Earrings</a></li>
+              <li><a href="/shop-bracelets.html">Bracelets</a></li>
+              <li><a href="/shop-brooches.html">Brooches</a></li>
+              <li><a href="/shop-art-prints.html">Art Prints</a></li>
+              <li><a href="/shop-home-treasures.html">Home Treasures</a></li>
+            </ul>
+          </li>
+          <li><a href="/gallery.html">Gallery</a></li>
+          <li><a href="/gift-voucher.html">Gift Voucher</a></li>
+          <li><a href="#">Gifts</a>
+            <ul class="submenu">
+              <li><a href="/gifts-for-her.html">For Her</a></li>
+              <li><a href="/gifts-for-him.html">For Him</a></li>
+              <li><a href="/gifts-wedding-anniversary.html">Wedding & Anniversary</a></li>
+              <li><a href="/gifts-birthday.html">Birthday</a></li>
+              <li><a href="/gifts-new-baby-communion.html">New Baby & Communion</a></li>
+              <li><a href="/gifts-retirement.html">Retirement</a></li>
+            </ul>
+          </li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li style="margin-left: auto;"><a href="/cart.html" style="font-weight: 600; color: var(--accent);">🛒 Cart</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+  <section class="section">
+    <div class="container" style="max-width: 900px;">
+      <h1>Shopping Cart</h1>
+
+      <div id="cart-empty" style="text-align: center; padding: 3rem; background-color: var(--secondary); border-radius: 8px;">
+        <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Your cart is empty</p>
+        <a href="/shop.html" class="btn btn-primary">Continue Shopping</a>
+      </div>
+
+      <div id="cart-items" style="display: none;">
+        <table style="width: 100%; margin-bottom: 2rem; border-collapse: collapse;">
+          <thead style="border-bottom: 2px solid var(--border);">
+            <tr>
+              <th style="text-align: left; padding: 1rem; font-weight: 600;">Product</th>
+              <th style="text-align: center; padding: 1rem; font-weight: 600; width: 100px;">Quantity</th>
+              <th style="text-align: right; padding: 1rem; font-weight: 600; width: 120px;">Price</th>
+              <th style="text-align: center; padding: 1rem; font-weight: 600; width: 80px;"></th>
+            </tr>
+          </thead>
+          <tbody id="cart-table-body">
+          </tbody>
+        </table>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 3rem 0;">
+          <div>
+            <a href="/shop.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Continue Shopping</a>
+          </div>
+          <div>
+            <div style="background-color: var(--secondary); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 600; color: var(--primary);">
+                <span>Total:</span>
+                <span id="cart-total">€0.00</span>
+              </div>
+            </div>
+            <button id="checkout-btn" class="btn btn-primary" style="width: 100%;">Proceed to Checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      renderCart();
+      document.getElementById('checkout-btn')?.addEventListener('click', checkout);
+    });
+
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem('timepieces-cart') || '[]');
+
+      if (cart.length === 0) {
+        document.getElementById('cart-empty').style.display = 'block';
+        document.getElementById('cart-items').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('cart-empty').style.display = 'none';
+      document.getElementById('cart-items').style.display = 'block';
+
+      const tbody = document.getElementById('cart-table-body');
+      tbody.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const price = parseFloat(item.price);
+        const itemTotal = price * item.quantity;
+        total += itemTotal;
+
+        const row = document.createElement('tr');
+        row.style.borderBottom = '1px solid var(--border)';
+        row.innerHTML = `
+          <td style="padding: 1rem;">
+            <a href="/product.html?handle=${item.handle}" style="color: var(--primary); text-decoration: none; font-weight: 500;">${item.title}</a>
+          </td>
+          <td style="text-align: center; padding: 1rem;">
+            <input type="number" value="${item.quantity}" min="1" data-index="${index}" class="qty-input" style="width: 60px; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px; text-align: center;">
+          </td>
+          <td style="text-align: right; padding: 1rem;">€${price.toFixed(2)}</td>
+          <td style="text-align: center; padding: 1rem;">
+            <button class="remove-btn" data-index="${index}" style="background: none; border: none; color: var(--error); cursor: pointer; font-weight: 600;">Remove</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      document.getElementById('cart-total').textContent = '€' + total.toFixed(2);
+
+      document.querySelectorAll('.qty-input').forEach(input => {
+        input.addEventListener('change', function() {
+          updateQuantity(parseInt(this.dataset.index), parseInt(this.value));
+        });
+      });
+
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          removeFromCart(parseInt(this.dataset.index));
+        });
+      });
+    }
+
+    function updateQuantity(index, qty) {
+      const cart = JSON.parse(localStorage.getItem('timepieces-cart') || '[]');
+      if (qty <= 0) {
+        cart.splice(index, 1);
+      } else {
+        cart[index].quantity = qty;
+      }
+      localStorage.setItem('timepieces-cart', JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+
+    function removeFromCart(index) {
+      const cart = JSON.parse(localStorage.getItem('timepieces-cart') || '[]');
+      cart.splice(index, 1);
+      localStorage.setItem('timepieces-cart', JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+
+    function checkout() {
+      alert('🎉 Demo Mode\n\nThis is a demonstration site. In a live store, this would process your payment and confirm your order.\n\nThank you for browsing Time Pieces!');
+    }
+  </script>
+</main>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <img src="/assets/img/logo.png" alt="Time Pieces" class="footer-logo">
+        <p class="footer-tagline">Uniquely Time Pieces</p>
+        <div class="footer-contact">
+          <p>Main Street, Roscommon, Ireland</p>
+          <p><a href="tel:+353 89 978 7608">+353 89 978 7608</a></p>
+          <p><a href="mailto:info@rapidsites.eu">info@rapidsites.eu</a></p>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/shop-rings.html">Rings</a></li>
+          <li><a href="/shop-necklaces.html">Necklaces</a></li>
+          <li><a href="/shop-earrings.html">Earrings</a></li>
+          <li><a href="/shop-bracelets.html">Bracelets</a></li>
+          <li><a href="/shop-brooches.html">Brooches</a></li>
+          <li><a href="/shop-art-prints.html">Art Prints</a></li>
+          <li><a href="/shop-home-treasures.html">Home Treasures</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Gifts</h4>
+        <ul>
+          <li><a href="/gifts-for-her.html">For Her</a></li>
+          <li><a href="/gifts-for-him.html">For Him</a></li>
+          <li><a href="/gifts-wedding-anniversary.html">Wedding & Anniversary</a></li>
+          <li><a href="/gifts-birthday.html">Birthday</a></li>
+          <li><a href="/gifts-new-baby-communion.html">New Baby & Communion</a></li>
+          <li><a href="/gifts-retirement.html">Retirement</a></li>
+          <li><a href="/gift-voucher.html">Gift Voucher</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/gallery.html">Gallery</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Time Pieces Roscommon. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="/js/main.js"></script>
+</body>
+</html>
