@@ -13,6 +13,5 @@ build/
 .idea/
 .claude/
 scripts/generate.js
-data/products.json
 
 .vercel
