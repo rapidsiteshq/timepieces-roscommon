@@ -367,6 +367,11 @@ nav .submenu a:hover {
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .occasion-card:hover {
