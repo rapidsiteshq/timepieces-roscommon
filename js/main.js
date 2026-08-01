@@ -28,12 +28,36 @@ function initNav() {
     }
   });
 
-  const submenuTriggers = nav.querySelectorAll('li:has(.submenu)');
-  submenuTriggers.forEach(trigger => {
-    trigger.addEventListener('click', function(e) {
+  // Handle desktop hover for submenus
+  const menuItems = nav.querySelectorAll('li:has(.submenu)');
+  menuItems.forEach(item => {
+    const submenu = item.querySelector('.submenu');
+
+    // Keep submenu open on hover
+    item.addEventListener('mouseenter', function() {
+      if (window.innerWidth > 768) {
+        submenu.style.display = 'flex';
+      }
+    });
+
+    item.addEventListener('mouseleave', function() {
+      if (window.innerWidth > 768) {
+        submenu.style.display = 'none';
+      }
+    });
+
+    // Mobile click handling
+    item.addEventListener('click', function(e) {
       if (window.innerWidth <= 768) {
         e.preventDefault();
-        const submenu = this.querySelector('.submenu');
+        const isOpen = submenu.classList.contains('open');
+
+        // Close all other submenus
+        document.querySelectorAll('.submenu.open').forEach(m => {
+          if (m !== submenu) m.classList.remove('open');
+        });
+
+        // Toggle this submenu
         submenu.classList.toggle('open');
       }
     });
@@ -41,7 +65,9 @@ function initNav() {
 
   nav.querySelectorAll('a:not(:has(+ .submenu))').forEach(link => {
     link.addEventListener('click', function() {
-      nav.classList.remove('active');
+      if (window.innerWidth <= 768) {
+        nav.classList.remove('active');
+      }
     });
   });
 }

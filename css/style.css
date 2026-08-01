@@ -174,12 +174,22 @@ nav .submenu {
   min-width: 200px;
   flex-direction: column;
   padding: 0.5rem 0;
-  margin-top: 0.5rem;
+  margin-top: -1px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
 }
 
-nav > ul > li:hover .submenu {
+nav > ul > li:hover .submenu,
+nav .submenu:hover {
   display: flex;
+}
+
+nav > ul > li {
+  position: relative;
+}
+
+nav > ul > li:hover {
+  display: block;
 }
 
 nav .submenu li {
