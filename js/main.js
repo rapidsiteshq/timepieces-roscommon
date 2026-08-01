@@ -299,14 +299,9 @@ function debounce(func, delay) {
 
 function initVoucherPrice() {
   const amountSelect = document.getElementById('voucher-amount');
-  const priceDisplay = document.getElementById('voucher-price');
   const addBtn = document.getElementById('add-voucher-btn');
 
-  if (!amountSelect || !priceDisplay || !addBtn) return;
-
-  amountSelect.addEventListener('change', function() {
-    priceDisplay.textContent = this.value;
-  });
+  if (!amountSelect || !addBtn) return;
 
   addBtn.addEventListener('click', function() {
     const amount = amountSelect.value;
